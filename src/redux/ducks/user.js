@@ -1,40 +1,70 @@
 // ACTION TYPES
-export const GET_USERS = "GET_USERS";
-export const SET_USERS = "SET_USERS";
+export const FETCH_USERS_ = "FETCH_USERS_";
+export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
+export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE";
 
 // ACTION MAKER
-export const getUsers = () => {
+// FETCHING DATA
+export const fetchUsers = () => {
   return {
-    type: GET_USERS,
+    type: FETCH_USERS_,
   };
 };
 
-export const setUsers = (users) => {
+// FETCHING DATA SUCCESS
+export const fetchUsersSuccess = (users) => {
   return {
-    type: SET_USERS,
+    type: FETCH_USER_SUCCESS,
     payload: users,
+  };
+};
+
+// FETCHING DATA ERROR
+export const fetchUsersFailure = (error) => {
+  return {
+    type: FETCH_USER_SUCCESS,
+    payload: error,
   };
 };
 
 // Initial State
 const initialState = {
+  loading: false,
   users: undefined,
+  error: "",
 };
 
 //REDUCERS
-const userReducer = (state=initialState, action)=>{
-    switch (action.type) {
-        // If we get user data
-        case SET_USERS:{
-            return{
-                ...state,
-                users: action.payload
-            }
-        }
-        // If its some error
-        default:
-            return state;
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    // If we fetch data
+    case FETCH_USERS_: {
+      return {
+        ...state,
+        loading: true,
+      };
     }
-}
+    // If we received data
+    case FETCH_USERS_SUCCESS: {
+      return {
+        loading: false,
+        users: action.payload,
+        error: "",
+      };
+    }
+    // If we received error
+    case FETCH_USERS_FAILURE: {
+      return {
+        loading: false,
+        users: undefined,
+        error: action.payload,
+      };
+    }
+
+    // If we break the code in any case
+    default:
+      return state;
+  }
+};
 
 export default userReducer;
