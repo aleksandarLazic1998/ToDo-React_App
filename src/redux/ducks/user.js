@@ -30,7 +30,7 @@ export const fetchUsersFailure = (error) => {
 // Initial State
 const initialState = {
   loading: false,
-  users: undefined,
+  users: [],
   error: "",
 };
 
@@ -45,7 +45,7 @@ const userReducer = (state = initialState, action) => {
       };
     }
     // If we received data
-    case FETCH_USERS_SUCCESS: {
+    case FETCH_USER_SUCCESS: {
       return {
         loading: false,
         users: action.payload,
@@ -53,10 +53,10 @@ const userReducer = (state = initialState, action) => {
       };
     }
     // If we received error
-    case FETCH_USERS_FAILURE: {
+    case FETCH_USER_FAILURE: {
       return {
         loading: false,
-        users: undefined,
+        users: [],
         error: action.payload,
       };
     }

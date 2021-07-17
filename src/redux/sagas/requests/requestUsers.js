@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export function getUserRequest() {
-  axios.request({
-    method: "get",
+  return axios.request({
+    method: "GET",
     url: "https://jsonplaceholder.typicode.com/users",
   });
 }
