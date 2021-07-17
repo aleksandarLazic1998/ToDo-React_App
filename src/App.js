@@ -1,9 +1,11 @@
 import "./App.css";
 import Navigation from "./components/Navigation";
+import HomeComponent from "./components/navComponents/HomeComponent";
+import AboutComponent from "./components/navComponents/AboutComponent";
+import ContactComponent from "./components/navComponents/ContactComponent";
+import NotFound from "./components/navComponents/NotFound";
 
-import HomeComponent from "./navComponents/HomeComponent";
-import AboutComponent from "./navComponents/AboutComponent";
-import ContactComponent from "./navComponents/ContactComponent";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
